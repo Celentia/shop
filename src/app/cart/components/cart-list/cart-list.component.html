@@ -2,6 +2,7 @@
   <ul *ngFor="let item of cartItems; trackBy: trackByFn">
     <li>{{ item.id }}</li>
     <li>{{ item.name }}</li>
+    <li>{{ item.quantity }}</li>
     <li>{{ item.price }}</li>
   </ul>
 </ng-container>
