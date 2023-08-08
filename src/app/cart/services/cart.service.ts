@@ -10,11 +10,13 @@ export class CartService {
       {
         id: 1,
         name: 'Assam Gold',
+        quantity: 3,
         price: 59
       },
       {
         id: 2,
         name: 'Chinese Sencha',
+        quantity: 5,
         price: 79
       }
     ];
