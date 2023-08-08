@@ -3,5 +3,6 @@ export class Cart {
     public id: number,
     public name: string,
     public price: number
+    // Обычно еще есть количество
   ) {}
 }
