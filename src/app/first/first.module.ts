@@ -4,6 +4,7 @@ import { FirstComponent } from './first.component';
 
 @NgModule({
   declarations: [FirstComponent],
-  imports: [CommonModule]
+  imports: [CommonModule],
+  exports: [FirstComponent]
 })
 export class FirstModule {}

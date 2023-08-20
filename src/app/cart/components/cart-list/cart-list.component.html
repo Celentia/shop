@@ -1,10 +1,18 @@
 <ng-container *ngIf="cartItems.length; else emptyCart">
-  <ul *ngFor="let item of cartItems; trackBy: trackByFn">
-    <li>{{ item.id }}</li>
-    <li>{{ item.name }}</li>
-    <li>{{ item.quantity }}</li>
-    <li>{{ item.price }}</li>
-  </ul>
+  <ng-container *ngFor="let item of cartItems; trackBy: trackByFn">
+    <app-cart-item
+      [item]="item"
+      (deleteItem)="onDeleteItem(item.id)"
+      (quantityIncrease)="onQuantityIncrease(item.id)"
+      (quantityDecrease)="onQuantityDecrease(item.id)"
+    ></app-cart-item>
+  </ng-container>
+  <div>
+    Total cost: <span [ngStyle]="{ 'font-weight': 'bold' }">{{ totalCost }}</span>
+  </div>
+  <div>
+    Total quantity: <span [ngStyle]="{ 'font-weight': 'bold' }">{{ totalQuantity }}</span>
+  </div>
 </ng-container>
 <ng-template #emptyCart>
   <p>Cart is empty</p>

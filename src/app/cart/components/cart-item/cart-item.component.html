@@ -1,0 +1,9 @@
+<div appHighlight>
+  <div>{{ item.id }}</div>
+  <div>{{ item.name }}</div>
+  <div>{{ item.quantity }}</div>
+  <div>{{ item.price }}</div>
+  <button (click)="onDeleteItem(item.id)">Delete</button>
+  <button (click)="onQuantityIncrease(item.id)">Increase quantity</button>
+  <button (click)="onQuantityDecrease(item.id)">Decrease quantity</button>
+</div>

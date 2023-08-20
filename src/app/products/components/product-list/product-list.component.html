@@ -1,9 +1,5 @@
-<ul *ngFor="let product of products">
-  <li>{{ product.id }}</li>
-  <li>{{ product.name }}</li>
-  <li>{{ product.description }}</li>
-  <li>{{ product.price }}</li>
-  <li>{{ product.category }}</li>
-  <li>{{ product.isAvailable }}</li>
-</ul>
-<app-product></app-product>
+<ng-container *ngFor="let product of products">
+  <app-product [product]="product" (addToCart)="onAddToCart($event)"></app-product>
+</ng-container>
+
+<app-cart-list></app-cart-list>
