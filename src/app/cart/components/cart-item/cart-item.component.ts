@@ -1,7 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CartItem } from '../../models/cart.model';
-import { CartService } from '../../services/cart.service';
-
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
@@ -13,8 +11,6 @@ export class CartItemComponent {
   @Output() deleteItem = new EventEmitter();
   @Output() quantityIncrease = new EventEmitter();
   @Output() quantityDecrease = new EventEmitter();
-
-  constructor(public cartService: CartService) {}
 
   onDeleteItem(id: number) {
     this.deleteItem.emit(id);
