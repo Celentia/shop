@@ -15,6 +15,6 @@ export class ProductComponent {
 
   onAddToCart() {
     this.isAddedToCart = true;
-    this.addToCart.emit(this.product.id);
+    this.addToCart.emit(this.product);
   }
 }

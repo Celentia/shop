@@ -1,4 +1,4 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, DoCheck, inject } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart.model';
 
@@ -12,7 +12,7 @@ export class CartListComponent implements DoCheck {
   totalCost!: number;
   totalQuantity!: number;
 
-  constructor(public cartService: CartService) {}
+  private cartService = inject(CartService);
 
   ngDoCheck(): void {
     this.updateCartItems();
