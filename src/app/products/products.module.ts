@@ -7,6 +7,8 @@ import { CartModule } from '../cart/cart.module';
 @NgModule({
   declarations: [ProductComponent, ProductListComponent],
   imports: [CommonModule, CartModule],
+  // Если ProductComponent используется только внутри ProductListComponent,
+  // то его можно не экспортировать
   exports: [ProductComponent, ProductListComponent]
 })
 export class ProductsModule {}

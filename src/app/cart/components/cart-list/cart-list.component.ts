@@ -12,6 +12,8 @@ export class CartListComponent implements DoCheck {
   totalCost!: number;
   totalQuantity!: number;
 
+  // Если сервис не используется в шаблоне,
+  // то его можно инжектить как приватное свойство
   constructor(public cartService: CartService) {}
 
   ngDoCheck(): void {

@@ -14,7 +14,7 @@ export class CartItemComponent {
   @Output() quantityIncrease = new EventEmitter();
   @Output() quantityDecrease = new EventEmitter();
 
-  constructor(public cartService: CartService) {}
+  // constructor(public cartService: CartService) {}
 
   onDeleteItem(id: number) {
     this.deleteItem.emit(id);

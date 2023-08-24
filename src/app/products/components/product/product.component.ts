@@ -15,6 +15,9 @@ export class ProductComponent {
 
   onAddToCart() {
     this.isAddedToCart = true;
+    // Если вы будете передавать продукт вместо идентификатора,
+    // то вам не нужно будет искать этот продукт в родительском компоненте
+    // const product = this.products.find(x => x.id === id)!;
     this.addToCart.emit(this.product.id);
   }
 }

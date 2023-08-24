@@ -8,7 +8,9 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  // Если добавление роутов происходит в main.ts, то тут их не надо добавлять
+  // и можно также не делать этот файл модулем
+  // imports: [RouterModule.forRoot(routes)],
+  // exports: [RouterModule]
 })
 export class AppRoutingModule {}

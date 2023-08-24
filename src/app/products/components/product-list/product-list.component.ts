@@ -20,6 +20,8 @@ export class ProductListComponent implements OnInit {
     this.products = this.productsService.getProducts();
   }
 
+  // Если вы будете передавать продукт вместо идентификатора,
+  // то вам не нужно будет искать этот продукт
   onAddToCart(id: number) {
     const product = this.products.find(x => x.id === id)!;
     this.cartService.addCartItem(product);
