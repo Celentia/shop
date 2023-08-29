@@ -24,3 +24,15 @@
 - The app has been divided into modules: cart, orders, products, shared, and first
 - The app's title is derived from a template variable
 - The AppComponent become standalone
+
+## [0.2.0] - 2023-08-29
+
+### Added
+
+- Methods to clear the cart and return a boolean value is the cart empty/not empty
+- Service to store a settings object (id, login, email, ...)
+- Service in the form of a ready-made object literal, registered using useValue
+- Service to generate a random sequence of characters of length n from the set a-z, A-Z, 0-9, function that will provide the generated string, a token called generatedString
+- Generator which should return an infinite sequence of integers
+- Service which will allow working with window.localStorage
+- Directive to change font properties on click using ElementRef + Renderer2

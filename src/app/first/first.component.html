@@ -5,3 +5,15 @@
   <li>{{ category }}</li>
   <li>{{ isAvailable }}</li>
 </ul>
+
+<p>{{ constant | json }}</p>
+
+<button (click)="updateConfig()">Update config</button>
+<button (click)="updateConfigProperty()">Update config property</button>
+<p>{{ config | json }}</p>
+
+<button (click)="saveKey()">Save key to localstorage</button>
+<button (click)="removeKey()">Remove key from localstorage</button>
+
+<p>{{ generatedLine }}</p>
+<p>{{ generatedID }}</p>

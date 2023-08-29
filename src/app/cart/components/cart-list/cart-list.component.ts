@@ -11,6 +11,7 @@ export class CartListComponent implements DoCheck {
   cartItems: CartItem[] = [];
   totalCost!: number;
   totalQuantity!: number;
+  isEmpty = true;
 
   private cartService = inject(CartService);
 
@@ -20,12 +21,6 @@ export class CartListComponent implements DoCheck {
 
   trackByFn(_index: number, item: CartItem): number {
     return item.id;
-  }
-
-  updateCartItems() {
-    this.cartItems = this.cartService.getCartItems();
-    this.totalCost = this.cartService.totalCost;
-    this.totalQuantity = this.cartService.totalQuantity;
   }
 
   onDeleteItem(id: number) {
@@ -41,5 +36,17 @@ export class CartListComponent implements DoCheck {
   onQuantityDecrease(id: number) {
     this.cartService.decreaseItemQuantity(id);
     this.updateCartItems();
+  }
+
+  onRemoveAll() {
+    this.cartItems = this.cartService.removeAllProducts();
+    this.updateCartItems();
+  }
+
+  private updateCartItems() {
+    this.cartItems = this.cartService.getCartItems();
+    this.totalCost = this.cartService.totalCost;
+    this.totalQuantity = this.cartService.totalQuantity;
+    this.isEmpty = this.cartService.isEmptyCart();
   }
 }

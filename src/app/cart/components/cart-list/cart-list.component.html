@@ -1,4 +1,4 @@
-<ng-container *ngIf="cartItems.length; else emptyCart">
+<ng-container *ngIf="isEmpty; else emptyCart">
   <app-cart-item
     *ngFor="let item of cartItems; trackBy: trackByFn"
     [item]="item"
@@ -12,6 +12,7 @@
   <div>
     Total quantity: <span [ngStyle]="{ 'font-weight': 'bold' }">{{ totalQuantity }}</span>
   </div>
+  <button (click)="onRemoveAll()">Remove all from the cart</button>
 </ng-container>
 <ng-template #emptyCart>
   <p>Cart is empty</p>

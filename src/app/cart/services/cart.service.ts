@@ -52,6 +52,15 @@ export class CartService {
     }
   }
 
+  removeAllProducts(): CartItem[] {
+    this.cartItems = [];
+    return this.cartItems;
+  }
+
+  isEmptyCart(): boolean {
+    return !!this.getCartItems().length;
+  }
+
   get totalCost() {
     let totalPrice = 0;
     this.cartItems.forEach(item => (totalPrice += item.price));
