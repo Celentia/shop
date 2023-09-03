@@ -11,7 +11,9 @@ export class CartListComponent implements DoCheck {
   cartItems: CartItem[] = [];
   totalCost!: number;
   totalQuantity!: number;
+  selectedSortField: string = 'Sort by';
   isEmpty = true;
+  isChecked = false;
 
   private cartService = inject(CartService);
 
@@ -41,6 +43,10 @@ export class CartListComponent implements DoCheck {
   onRemoveAll() {
     this.cartItems = this.cartService.removeAllProducts();
     this.updateCartItems();
+  }
+
+  onCheckboxChange() {
+    this.isChecked = !this.isChecked;
   }
 
   private updateCartItems() {

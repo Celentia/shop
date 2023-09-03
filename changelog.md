@@ -36,3 +36,21 @@
 - Generator which should return an infinite sequence of integers
 - Service which will allow working with window.localStorage
 - Directive to change font properties on click using ElementRef + Renderer2
+
+## [0.3.0] - 2023-09-03
+
+### Added
+
+- The build-in pipe for formatting the price of cart and product items
+- The build-in pipe for formatting the category of the product to uppercase
+- The async pipe to display data provided by the ProductService service
+- The custom pipe for sorting cart items, the ability to sort the array of items by price, quantity, and name using a select list, specifying the sorting direction using a checkbox
+- CommonModule, FormsModule to SharedModule
+
+### Changed
+
+- The getProducts() method of the ProductService service to return a promise/observable
+
+### Removed
+
+- CommonModule and FormsModule modules from the imports of other modules that utilize SharedModule

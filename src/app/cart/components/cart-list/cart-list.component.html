@@ -1,6 +1,6 @@
 <ng-container *ngIf="isEmpty; else emptyCart">
   <app-cart-item
-    *ngFor="let item of cartItems; trackBy: trackByFn"
+    *ngFor="let item of cartItems | orderBy: selectedSortField : isChecked; trackBy: trackByFn"
     [item]="item"
     (deleteItem)="onDeleteItem(item.id)"
     (quantityIncrease)="onQuantityIncrease(item.id)"
@@ -13,6 +13,16 @@
     Total quantity: <span [ngStyle]="{ 'font-weight': 'bold' }">{{ totalQuantity }}</span>
   </div>
   <button (click)="onRemoveAll()">Remove all from the cart</button>
+  <select [(ngModel)]="selectedSortField">
+    <option selected disabled>Sort by</option>
+    <option value="name">Name</option>
+    <option value="quantity">Quantity</option>
+    <option value="price">Price</option>
+  </select>
+  <label>
+    Change sort order
+    <input type="checkbox" id="checkbox" (change)="onCheckboxChange()" />
+  </label>
 </ng-container>
 <ng-template #emptyCart>
   <p>Cart is empty</p>
