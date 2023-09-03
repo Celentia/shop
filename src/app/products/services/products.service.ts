@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductCategory } from '../models/product-category.enum';
 
@@ -6,8 +7,8 @@ import { ProductCategory } from '../models/product-category.enum';
   providedIn: 'root'
 })
 export class ProductsService {
-  getProducts(): Array<Product> {
-    return [
+  getProducts(): Observable<Array<Product>> {
+    const products: Array<Product> = [
       {
         id: 1,
         name: 'Assam Gold',
@@ -36,5 +37,6 @@ export class ProductsService {
         isAvailable: true
       }
     ];
+    return of(products);
   }
 }
