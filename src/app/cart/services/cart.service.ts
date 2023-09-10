@@ -6,8 +6,13 @@ import { CartItem } from '../models/cart.model';
   providedIn: 'root'
 })
 export class CartService {
+  private cartKey = 'cart';
   private cartItems: CartItem[] = [];
   private itemInitialPrices: { [itemId: number]: number } = {};
+
+  constructor() {
+    this.loadCartData();
+  }
 
   getCartItems(): CartItem[] {
     return this.cartItems;
@@ -26,6 +31,8 @@ export class CartService {
 
       this.itemInitialPrices[product.id] = product.price;
     } else this.increaseItemQuantity(repeatableItem.id);
+
+    this.saveCartData();
   }
 
   removeCartItem(id: number) {
@@ -33,6 +40,7 @@ export class CartService {
     const index = cartItems.findIndex(item => item.id === id);
     if (index !== -1) {
       cartItems.splice(index, 1);
+      localStorage.setItem(this.cartKey, JSON.stringify(cartItems));
     }
   }
 
@@ -54,6 +62,7 @@ export class CartService {
 
   removeAllProducts(): CartItem[] {
     this.cartItems = [];
+    localStorage.removeItem(this.cartKey);
     return this.cartItems;
   }
 
@@ -71,5 +80,16 @@ export class CartService {
     let totalQuantity = 0;
     this.cartItems.forEach(item => (totalQuantity += item.quantity));
     return totalQuantity;
+  }
+
+  private saveCartData() {
+    localStorage.setItem(this.cartKey, JSON.stringify(this.cartItems));
+  }
+
+  private loadCartData() {
+    const savedCartData = localStorage.getItem(this.cartKey);
+    if (savedCartData) {
+      this.cartItems = JSON.parse(savedCartData);
+    }
   }
 }

@@ -1,0 +1,47 @@
+<form (ngSubmit)="onSaveProduct()" id="product-form" #form="ngForm">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="product.name" />
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      type="text"
+      class="form-control"
+      id="description"
+      name="description"
+      placeholder="Description"
+      [(ngModel)]="product.description"
+    ></textarea>
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input
+      type="number"
+      min="1"
+      max="3"
+      class="form-control"
+      id="price"
+      name="price"
+      placeholder="Price"
+      [(ngModel)]="product.price"
+    />
+  </div>
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select name="category" [(ngModel)]="product.category">
+      <option value="black">black</option>
+      <option value="green">green</option>
+      <option value="oolong">oolong</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="isAvailable">Availability</label>
+    <select name="isAvailable" [(ngModel)]="product.isAvailable">
+      <option value="true">true</option>
+      <option value="false">false</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary" form="product-form">Save</button>
+  <button type="button" class="btn btn-primary" (click)="onGoBack()">Back</button>
+</form>

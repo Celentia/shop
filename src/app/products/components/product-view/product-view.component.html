@@ -1,0 +1,9 @@
+<ng-container *ngIf="product$ | async as product">
+  <div>{{ product.id }}</div>
+  <div>{{ product.name }}</div>
+  <div>{{ product.description }}</div>
+  <div>{{ product.price | currency: 'EUR' : 'symbol' }}</div>
+  <div>{{ product.category | uppercase }}</div>
+  <div>{{ product.isAvailable }}</div>
+</ng-container>
+<button (click)="onGoBack()">Back</button>

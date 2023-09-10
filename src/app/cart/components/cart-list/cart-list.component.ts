@@ -1,4 +1,5 @@
 import { Component, DoCheck, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart.model';
 
@@ -16,6 +17,7 @@ export class CartListComponent implements DoCheck {
   isChecked = false;
 
   private cartService = inject(CartService);
+  private router = inject(Router);
 
   ngDoCheck(): void {
     this.updateCartItems();
@@ -47,6 +49,10 @@ export class CartListComponent implements DoCheck {
 
   onCheckboxChange() {
     this.isChecked = !this.isChecked;
+  }
+
+  onGoBack() {
+    this.router.navigate(['/products-list']);
   }
 
   private updateCartItems() {
