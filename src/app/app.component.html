@@ -1,2 +1,3 @@
 <h1 #appTitle></h1>
+<button *ngIf="isLoggedOut" routerLink="/login" (click)="onLogIn()">Login</button>
 <router-outlet></router-outlet>

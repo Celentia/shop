@@ -10,11 +10,16 @@ import { Product } from '../../models/product.model';
 export class ProductComponent {
   @Input() product!: Product;
   @Output() addToCart = new EventEmitter();
+  @Output() viewProduct = new EventEmitter();
 
   isAddedToCart: boolean = false;
 
   onAddToCart() {
     this.isAddedToCart = true;
     this.addToCart.emit(this.product);
+  }
+
+  onViewProduct() {
+    this.viewProduct.emit(this.product);
   }
 }

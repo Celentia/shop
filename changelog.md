@@ -54,3 +54,23 @@
 ### Removed
 
 - CommonModule and FormsModule modules from the imports of other modules that utilize SharedModule
+
+## [0.4.0] - 2023-09-10
+
+### Added
+
+- Product card by /product/:productID that displays product's data. Title changes dynamically
+- Lazy-loading for main modules
+- Routing for product list, product item, product card, cart, admin panel, login page, product components in admin, orders, orders in the admin, admin dashboard
+- Custom titles to each page that is configured via routing
+- CanActivate Guard for order processing. The guard allows loading the functionality only if the cart is not empty
+- Admin panel with dashboard, products, product form to add or edit item and orders
+- Resolve guard to product form on edit
+- Protection for the admin panel by CanActivate Guard
+- Ability to choose the role (admin or user). User doesn't have an access to the admin panel
+- Routing modules for products, cart, login page and admin
+- Page not found that appears for a user that tries to access a route that is not defined
+
+### Changed
+
+- Store cart items in local storage

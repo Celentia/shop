@@ -5,3 +5,4 @@
 <div>{{ product.category | uppercase }}</div>
 <div>{{ product.isAvailable }}</div>
 <button (click)="onAddToCart()" [disabled]="!product.isAvailable">Buy</button>
+<button class="btn btn-warning btn-sm" (click)="onViewProduct()">View</button>

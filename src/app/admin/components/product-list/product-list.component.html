@@ -1,0 +1,10 @@
+<ng-container *ngIf="products$ | async as products">
+  <app-admin-product
+    *ngFor="let product of products"
+    [product]="product"
+    (editProduct)="onEditProduct($event)"
+  ></app-admin-product>
+</ng-container>
+<br />
+<br />
+<button (click)="onAddProduct()">Add new product</button>
