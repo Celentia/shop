@@ -1,33 +1,31 @@
 import { inject } from '@angular/core';
 import { ResolveFn, Router } from '@angular/router';
-import { catchError, EMPTY, of, switchMap, take } from 'rxjs';
+import { of } from 'rxjs';
 import { ProductCategory } from 'src/app/products/models/product-category.enum';
 import { Product } from 'src/app/products/models/product.model';
-import { ProductsService } from 'src/app/products/services/products.service';
+import { ProductsPromiseService } from 'src/app/products/services/products-promise.service';
 
-export const productResolver: ResolveFn<Product> = (route, state) => {
-  const productsService = inject(ProductsService);
+export const productResolver: ResolveFn<Product> = route => {
+  const id = route.paramMap.get('id')!;
+  const productsService = inject(ProductsPromiseService);
   const router = inject(Router);
 
   if (!route.paramMap.has('id')) {
     return of(new Product(0, '', '', 0, ProductCategory.Black, false));
   }
 
-  const id = route.paramMap.get('id')!;
-
-  return productsService.getProduct(id).pipe(
-    switchMap((product: Product | undefined) => {
+  return productsService
+    .getProduct(id)
+    .then((product: Product | undefined) => {
       if (product) {
-        return of(product);
+        return Promise.resolve(product);
       } else {
         router.navigate(['/products']);
-        return EMPTY;
+        return Promise.reject('Product not found');
       }
-    }),
-    take(1),
-    catchError(() => {
-      router.navigate(['/products']);
-      return EMPTY;
     })
-  );
+    .catch(() => {
+      router.navigate(['/products']);
+      return Promise.reject('Error fetching product');
+    });
 };

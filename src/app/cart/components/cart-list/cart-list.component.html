@@ -1,11 +1,13 @@
-<ng-container *ngIf="isEmpty; else emptyCart">
-  <app-cart-item
-    *ngFor="let item of cartItems | orderBy: selectedSortField : isChecked; trackBy: trackByFn"
-    [item]="item"
-    (deleteItem)="onDeleteItem(item.id)"
-    (quantityIncrease)="onQuantityIncrease(item.id)"
-    (quantityDecrease)="onQuantityDecrease(item.id)"
-  ></app-cart-item>
+<ng-container *ngIf="withItems; else emptyCart">
+  <ng-container *ngIf="cartItems$ | async as cartItems">
+    <app-cart-item
+      *ngFor="let item of cartItems | orderBy: selectedSortField : isAsc; trackBy: trackByFn"
+      [item]="item"
+      (deleteItem)="onDeleteItem(item)"
+      (quantityIncrease)="onQuantityIncrease(item)"
+      (quantityDecrease)="onQuantityDecrease(item)"
+    ></app-cart-item>
+  </ng-container>
   <div>
     Total cost: <span [ngStyle]="{ 'font-weight': 'bold' }">{{ totalCost }}</span>
   </div>
@@ -13,7 +15,7 @@
     Total quantity: <span [ngStyle]="{ 'font-weight': 'bold' }">{{ totalQuantity }}</span>
   </div>
   <button (click)="onRemoveAll()">Remove all from the cart</button>
-  <select [(ngModel)]="selectedSortField">
+  <select [(ngModel)]="selectedSortField" (ngModelChange)="onSortOptionChange()">
     <option selected disabled>Sort by</option>
     <option value="name">Name</option>
     <option value="quantity">Quantity</option>

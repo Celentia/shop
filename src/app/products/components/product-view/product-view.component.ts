@@ -1,8 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { Product } from '../../models/product.model';
-import { ProductsService } from '../../services/products.service';
-import { of, type Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../../models/product.model';
+import { ProductsPromiseService } from '../../services/products-promise.service';
 
 @Component({
   selector: 'app-product-view',
@@ -12,9 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductViewComponent implements OnInit {
   @Input() productID!: string;
 
-  product$: Observable<Product | undefined> = of();
+  product$!: Promise<Product>;
 
-  private productsService = inject(ProductsService);
+  private productsService = inject(ProductsPromiseService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
