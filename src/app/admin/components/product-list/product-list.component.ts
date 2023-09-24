@@ -1,8 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { Product } from 'src/app/products/models/product.model';
-import { ProductsService } from 'src/app/products/services/products.service';
+import { ProductsPromiseService } from 'src/app/products/services/products-promise.service';
 
 @Component({
   selector: 'app-admin-product-list',
@@ -10,9 +9,9 @@ import { ProductsService } from 'src/app/products/services/products.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class AdminProductListComponent implements OnInit {
-  products$: Observable<Array<Product>> = of([]);
+  products$!: Promise<Product[]>;
 
-  private productsService = inject(ProductsService);
+  private productsService = inject(ProductsPromiseService);
   private router = inject(Router);
 
   ngOnInit(): void {

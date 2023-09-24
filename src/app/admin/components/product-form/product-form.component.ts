@@ -1,9 +1,8 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
-import { of, type Observable, map } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, type OnInit, inject } from '@angular/core';
+import { Location } from '@angular/common';
 import { type Product } from 'src/app/products/models/product.model';
-import { ProductsService } from 'src/app/products/services/products.service';
 import { ProductCategory } from 'src/app/products/models/product-category.enum';
+import { ProductsPromiseService } from 'src/app/products/services/products-promise.service';
 
 @Component({
   selector: 'app-product-form',
@@ -20,30 +19,23 @@ export class ProductFormComponent implements OnInit {
     isAvailable: false
   };
 
-  product$: Observable<Product | undefined> = of();
-
-  private productsService = inject(ProductsService);
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
+  private productsService = inject(ProductsPromiseService);
+  private location = inject(Location);
 
   ngOnInit(): void {
     this.product = this.product ? this.product : { ...(this.product as Product) };
-    this.product$ = this.route.data.pipe(map(data => data['product']));
   }
 
   onSaveProduct(): void {
     const product = { ...this.product };
     const method = product.id ? 'updateProduct' : 'createProduct';
 
-    if (product.id) {
-      this.router.navigate(['/admin/products', { id: product.id }]);
-    }
-
-    this.productsService[method](product);
-    this.onGoBack();
+    this.productsService[method](product)
+      .then(() => this.onGoBack())
+      .catch(err => console.log(err));
   }
 
   onGoBack() {
-    this.router.navigate(['admin/products']);
+    this.location.back();
   }
 }

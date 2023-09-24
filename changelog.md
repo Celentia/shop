@@ -74,3 +74,21 @@
 ### Changed
 
 - Store cart items in local storage
+
+## [0.5.0] - 2023-09-24
+
+### Added
+
+- json-server to imitate a back-end part
+- ProductsPromiseService to get, create, edit products via HttpClient
+- CartObservableService to get, remove, check cart emptiness, change quantity and total cost of cart items via HttpClient
+- TimingInterceptor that logs the duration of requests to the console and filters specific requests
+- AppSettingsService, responsible for loading the application settings (sorting criteria). It load the settings from the file assets/app-settings.json, and upon successful loading, stores these data in local storage using the LocalStorageService; in case of an unsuccessful attempt, makes two retry attempts; If it is still not possible to load the settings due to issues with the address or the absence of data in the file, set the default settings values
+
+### Changed
+
+- Components that utilized ProductsService, CartService, utilize ProductsPromiseService and CartObservableService respectively
+
+### Removed
+
+- ProductsService, CartService
