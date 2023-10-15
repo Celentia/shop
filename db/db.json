@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Assam Gold",
       "description": "This is one of the finest and the most traditional variety of the leafy black tea of Assam. When brewed, the liquor is particularly light, brisk, and aromatic.",
-      "price": 56,
+      "price": 119,
       "category": "black",
       "isAvailable": true
     },
@@ -39,6 +39,22 @@
       "category": "green",
       "isAvailable": "true",
       "id": 5
+    },
+    {
+      "name": "test",
+      "description": "test",
+      "price": 53,
+      "category": "black",
+      "isAvailable": "true",
+      "id": 6
+    },
+    {
+      "name": "testets",
+      "description": "testets",
+      "price": 541,
+      "category": "green",
+      "isAvailable": "true",
+      "id": 7
     }
   ],
   "cart": [

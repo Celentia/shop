@@ -1,7 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ProductsFacade } from 'src/app/core/@ngrx/products/products.facade';
 import { Product } from 'src/app/products/models/product.model';
-import { ProductsPromiseService } from 'src/app/products/services/products-promise.service';
 
 @Component({
   selector: 'app-admin-product-list',
@@ -9,13 +10,14 @@ import { ProductsPromiseService } from 'src/app/products/services/products-promi
   styleUrls: ['./product-list.component.scss']
 })
 export class AdminProductListComponent implements OnInit {
-  products$!: Promise<Product[]>;
+  products$!: Observable<ReadonlyArray<Product>>;
 
-  private productsService = inject(ProductsPromiseService);
   private router = inject(Router);
+  private productsFacade = inject(ProductsFacade);
 
   ngOnInit(): void {
-    this.products$ = this.productsService.getProducts();
+    this.products$ = this.productsFacade.products$;
+    this.productsFacade.getProducts();
   }
 
   onEditProduct(product: Product) {

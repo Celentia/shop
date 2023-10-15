@@ -1,27 +1,30 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as RouterActions from './../../../core/@ngrx/router/router.actions';
 import { Product } from '../../models/product.model';
-import { ProductsPromiseService } from '../../services/products-promise.service';
+import { ProductsFacade } from 'src/app/core/@ngrx/products/products.facade';
 
 @Component({
   selector: 'app-product-view',
   templateUrl: './product-view.component.html',
-  styleUrls: ['./product-view.component.scss']
+  styleUrls: ['./product-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductViewComponent implements OnInit {
   @Input() productID!: string;
 
-  product$!: Promise<Product>;
+  product$!: Observable<Readonly<Product> | null>;
 
-  private productsService = inject(ProductsPromiseService);
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
+  private store = inject(Store);
+  private productsFacade = inject(ProductsFacade);
 
   ngOnInit(): void {
-    this.product$ = this.productsService.getProduct(this.productID);
+    this.product$ = this.productsFacade.product$;
+    this.productsFacade.getProduct({ productID: this.productID });
   }
 
   onGoBack() {
-    this.router.navigate(['./../../'], { relativeTo: this.route });
+    this.store.dispatch(RouterActions.back());
   }
 }
