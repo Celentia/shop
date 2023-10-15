@@ -1,8 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Product } from '../../models/product.model';
 import { Router } from '@angular/router';
-import { ProductsPromiseService } from '../../services/products-promise.service';
+import { Observable } from 'rxjs';
 import { CartObservableService } from 'src/app/cart/services/cart-observable.service';
+import { ProductsFacade } from 'src/app/core/@ngrx/products/products.facade';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-list',
@@ -10,14 +11,15 @@ import { CartObservableService } from 'src/app/cart/services/cart-observable.ser
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  products$!: Promise<Product[]>;
+  products$!: Observable<ReadonlyArray<Product>>;
 
-  private productsService = inject(ProductsPromiseService);
   private cartService = inject(CartObservableService);
   private router = inject(Router);
+  private productsFacade = inject(ProductsFacade);
 
   ngOnInit(): void {
-    this.products$ = this.productsService.getProducts();
+    this.products$ = this.productsFacade.products$;
+    this.productsFacade.getProducts();
   }
 
   onAddToCart(product: Product) {

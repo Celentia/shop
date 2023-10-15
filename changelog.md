@@ -92,3 +92,12 @@
 ### Removed
 
 - ProductsService, CartService
+
+## [0.6.0] - 2023-10-15
+
+### Added
+
+- The state of the area Products (ProductsState) and the app state AppState
+- Actions, reducer, feature and state selectors, effects for the Products area
+- @ngrx/router-store, navigation using ‘GO’, ‘BACK’ actions for the Products area
+- The Façade Pattern for Products
