@@ -101,3 +101,14 @@
 - Actions, reducer, feature and state selectors, effects for the Products area
 - @ngrx/router-store, navigation using ‘GO’, ‘BACK’ actions for the Products area
 - The Façade Pattern for Products
+
+## [0.7.0] - 2023-10-24
+
+### Added
+
+- The reactive form for processing order
+- Validation for the first name, email via synchronous validators
+- A custom validator for the first name and a directive for validating email
+- The ability to enable validation for address field upon selecting Self-pickup option
+- The ability to add and remove additional fields for phone numbers
+- A map for validation messages

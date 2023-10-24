@@ -1,0 +1,14 @@
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+form.ng-invalid.ng-submitted input.ng-invalid,
+form.ng-invalid.ng-submitted textarea.ng-invalid,
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: red;
+}

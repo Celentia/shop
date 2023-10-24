@@ -1,1 +1,57 @@
-<p>process-order works!</p>
+<form class="d-flex flex-column" (ngSubmit)="onSave()" [formGroup]="orderForm">
+  <div>
+    <label>
+      First name
+      <input type="text" formControlName="firstName" />
+    </label>
+    <p *ngIf="isShowValidationMessage('firstName')">
+      {{ validationMessagesMap.get('firstName')?.message }}
+    </p>
+  </div>
+  <div>
+    <label>
+      Last name
+      <input type="text" formControlName="lastName" />
+    </label>
+  </div>
+  <div>
+    <label>
+      Email
+      <input type="email" formControlName="email" appEmailValidator />
+    </label>
+    <p *ngIf="isShowValidationMessage('email')">
+      {{ validationMessagesMap.get('email')?.message }}
+    </p>
+  </div>
+  <div formArrayName="phoneNumbers">
+    <div *ngFor="let phoneNumber of phoneNumbers.controls; let i = index">
+      <label>
+        Phone number {{ i }}
+        <input type="text" [formGroupName]="i" />
+      </label>
+      <button *ngIf="i" (click)="onRemovePhoneNumber(i)" type="button">Remove</button>
+    </div>
+  </div>
+  <div>
+    <button (click)="onAddPhoneNumber()" type="button">Add phone number</button>
+  </div>
+
+  <div>
+    <label>
+      Self pickup
+      <input type="checkbox" formControlName="selfPickup" (change)="onChangeAddressValidators(selfPickup.value)" />
+    </label>
+  </div>
+  <div *ngIf="selfPickup.value">
+    <label>
+      Address
+      <textarea cols="30" rows="10" formControlName="address" placeholder="{{ placeholder.address }}"></textarea>
+    </label>
+    <p *ngIf="isShowValidationMessage('address')">
+      {{ validationMessagesMap.get('address')?.message }}
+    </p>
+  </div>
+  <div>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </div>
+</form>
