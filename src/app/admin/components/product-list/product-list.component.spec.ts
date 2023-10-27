@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
-import { ProductListComponent } from './product-list.component';
+import { AdminProductListComponent } from './product-list.component';
 
 describe('ProductListComponent', () => {
-  let component: ProductListComponent;
-  let fixture: ComponentFixture<ProductListComponent>;
+  let component: AdminProductListComponent;
+  let fixture: ComponentFixture<AdminProductListComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductListComponent]
+      declarations: [AdminProductListComponent],
+      providers: [provideMockStore({})]
     });
-    fixture = TestBed.createComponent(ProductListComponent);
+    fixture = TestBed.createComponent(AdminProductListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
