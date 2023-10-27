@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { ProductViewComponent } from './product-view.component';
 
@@ -8,7 +9,8 @@ describe('ProductViewComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductViewComponent]
+      declarations: [ProductViewComponent],
+      providers: [provideMockStore({})]
     });
     fixture = TestBed.createComponent(ProductViewComponent);
     component = fixture.componentInstance;

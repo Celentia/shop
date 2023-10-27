@@ -1,8 +1,8 @@
 <div>{{ product.id }}</div>
 <div appTextEmphasis="green">{{ product.name }}</div>
 <div>{{ product.description }}</div>
-<div>{{ product.price | currency: 'EUR' : 'symbol' }}</div>
-<div>{{ product.category | uppercase }}</div>
+<div id="price">{{ product.price | currency: 'EUR' : 'symbol' }}</div>
+<div id="category">{{ product.category | uppercase }}</div>
 <div>{{ product.isAvailable }}</div>
-<button (click)="onAddToCart()" [disabled]="!product.isAvailable">Buy</button>
+<button id="button" (click)="onAddToCart()" [disabled]="!product.isAvailable">Buy</button>
 <button class="btn btn-warning btn-sm" (click)="onViewProduct()">View</button>

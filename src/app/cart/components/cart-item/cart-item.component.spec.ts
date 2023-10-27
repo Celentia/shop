@@ -10,8 +10,15 @@ describe('CartItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CartItemComponent]
     });
+    const mockCartItem = {
+      id: 1,
+      name: 'Test Product',
+      quantity: 1,
+      price: 19.99
+    };
     fixture = TestBed.createComponent(CartItemComponent);
     component = fixture.componentInstance;
+    component.item = mockCartItem;
     fixture.detectChanges();
   });
 

@@ -112,3 +112,17 @@
 - The ability to enable validation for address field upon selecting Self-pickup option
 - The ability to add and remove additional fields for phone numbers
 - A map for validation messages
+
+## [0.8.0] - 2023-10-28
+
+### Added
+
+- Isolated unit tests for OrderBy pipe
+- Isolated unit tests for CartObservable services
+- Integration unit tests for Product component
+- Shallow unit tests for App component
+- Code coverage for tests
+
+### Fixed
+
+- Unit tests across the application
