@@ -1,11 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { initialProductsState } from './products.state';
+import { ProductsState, initialProductsState } from './products.state';
 import * as ProductsActions from './products.actions';
 
 export const reducer = createReducer(
   initialProductsState,
-  on(ProductsActions.getProducts, (state: any) => {
+  on(ProductsActions.getProducts, (state: ProductsState) => {
     return {
       ...state,
       loading: true
