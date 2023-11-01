@@ -21,7 +21,7 @@ export class ProductFormComponent implements OnInit {
     isAvailable: false
   };
 
-  private store = inject(Store);
+  private store: Store = inject(Store);
   private productsFacade = inject(ProductsFacade);
   products$!: Observable<readonly Product[]>;
 

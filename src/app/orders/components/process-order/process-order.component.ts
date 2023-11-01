@@ -21,6 +21,7 @@ export class ProcessOrderComponent implements OnInit {
     address: ['']
   });
 
+  // лучше разные идентификаторы использовать, чтобы не было путаницы
   validationMessagesMap = validationMessagesMap;
 
   placeholder = {

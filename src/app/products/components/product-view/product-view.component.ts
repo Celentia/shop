@@ -16,7 +16,7 @@ export class ProductViewComponent implements OnInit {
 
   product$!: Observable<Readonly<Product> | null>;
 
-  private store = inject(Store);
+  private store: Store = inject(Store);
   private productsFacade = inject(ProductsFacade);
 
   ngOnInit(): void {
@@ -25,6 +25,7 @@ export class ProductViewComponent implements OnInit {
   }
 
   onGoBack() {
+    // у меня тут тип был unknown, поєтому добавил типизацию выше
     this.store.dispatch(RouterActions.back());
   }
 }
